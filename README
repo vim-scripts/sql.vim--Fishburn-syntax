@@ -1,0 +1,25 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=498
+
+Syntax file for Sybase SQL Anywhere (Adaptive Server Anywhere)
+
+Attention Vim7 users
+----------------------------
+This file has been renamed to sqlanywhere.vim and version 9.0.2 is included with Vim 7.0.
+A new file syntax\sql.vim has been created which manages the appropriate loading of any sql syntax file.  See :h sql.txt for more details.
+
+Supports
+------------
+- keywords
+- internal functions
+- internal stored procedures, 
+- TSQL compatability stored procedures
+- external stored procedures/functions, 
+- web services (HTML and XML support)
+- all database options
+- operators
+- datatypes
+- statements 
+- comments
+
+
+
