@@ -1,11 +1,12 @@
 " Vim syntax file
 " Language:    SQL, Adaptive Server Anywhere
 " Maintainer:  David Fishburn <fishburn@ianywhere.com>
-" Last Change: Tue Feb 10 2004 3:30:27 PM
-" Version:     9.0.1
+" Last Change: Fri Jan 07 2005 10:27:34 PM
+" Version:     9.0.2
 
-" Description: Updated to Adaptive Server Anywhere 9.0.0
+" Description: Updated to Adaptive Server Anywhere 9.0.2
 "              Updated to Adaptive Server Anywhere 9.0.1
+"              Updated to Adaptive Server Anywhere 9.0.0
 "
 " For version 5.x: Clear all syntax items
 " For version 6.x: Quit when a syntax file was already loaded
@@ -117,8 +118,6 @@ syn keyword sqlFunction sa_get_request_times
 syn keyword sqlFunction sa_get_server_messages
 syn keyword sqlFunction sa_get_simulated_scale_factors
 syn keyword sqlFunction sa_get_workload_capture_status
-syn keyword sqlFunction sa_http_header_info
-syn keyword sqlFunction sa_http_variable_info
 syn keyword sqlFunction sa_index_density
 syn keyword sqlFunction sa_index_levels
 syn keyword sqlFunction sa_index_statistics
@@ -174,8 +173,6 @@ syn keyword sqlFunction sa_remove_index_consultant_workload
 syn keyword sqlFunction sa_reset_identity
 syn keyword sqlFunction sa_resume_workload_capture
 syn keyword sqlFunction sa_server_option
-syn keyword sqlFunction sa_set_http_header
-syn keyword sqlFunction sa_set_http_option
 syn keyword sqlFunction sa_set_simulated_scale_factor
 syn keyword sqlFunction sa_setremoteuser
 syn keyword sqlFunction sa_setsubscription
@@ -385,7 +382,7 @@ syn keyword sqlKeyword	convert count crc cross cube
 syn keyword sqlKeyword	current cursor data data database
 syn keyword sqlKeyword	current_timestamp current_user
 syn keyword sqlKeyword	datatype dba dbfile
-syn keyword sqlKeyword	dbspace 
+syn keyword sqlKeyword	dbspace debug
 syn keyword sqlKeyword	decrypted default defaults definition
 syn keyword sqlKeyword	delay deleting delimited desc
 syn keyword sqlKeyword	description deterministic directory
@@ -424,7 +421,7 @@ syn keyword sqlKeyword	paglock parallel part partition path
 syn keyword sqlKeyword	pctfree plan preceding precision prefetch prefix
 syn keyword sqlKeyword	preserve preview primary 
 syn keyword sqlKeyword	prior priqty private privileges
-syn keyword sqlKeyword	procedure publication publish publisher
+syn keyword sqlKeyword	procedure public publication publish publisher
 syn keyword sqlKeyword	quotes range readcommitted
 syn keyword sqlKeyword	readpast readuncommitted 
 syn keyword sqlKeyword	received recompile recursive references
@@ -447,9 +444,9 @@ syn keyword sqlKeyword	subtransaction synchronization
 syn keyword sqlKeyword	syntax_error table tablock
 syn keyword sqlKeyword	tablockx tb temp template temporary then
 syn keyword sqlKeyword	timezone to top
-syn keyword sqlKeyword	transaction tries true 
+syn keyword sqlKeyword	transaction transactional tries true 
 syn keyword sqlKeyword	tsequal type unconditionally unenforced
-syn keyword sqlKeyword	unique union unknown unload unsigned
+syn keyword sqlKeyword	unique union unknown unload 
 syn keyword sqlKeyword	updating updlock upgrade use user
 syn keyword sqlKeyword	using utc utilities validproc
 syn keyword sqlKeyword	value values varchar variable
@@ -457,15 +454,18 @@ syn keyword sqlKeyword	varying vcat verify view virtual wait
 syn keyword sqlKeyword	warning wd when where window with within
 syn keyword sqlKeyword	with_lparen work writefile 
 syn keyword sqlKeyword	xlock zeros
-" XML support
-syn keyword sqlKeyword	openxml xmlelement xmlforest xmlgen xmlconcat xmlagg 
-syn keyword sqlKeyword	xmlattributes raw auto elements explicit
+" XML function support
+syn keyword sqlFunction	openxml xmlelement xmlforest xmlgen xmlconcat xmlagg 
+syn keyword sqlFunction	xmlattributes 
+syn keyword sqlKeyword	raw auto elements explicit
 " HTTP support
 syn keyword sqlKeyword	authorization secure url service
+" HTTP 9.0.2 new procedure keywords
+syn keyword sqlKeyword	namespace certificate clientport proxy
 " OLAP support 9.0.0
-syn keyword sqlKeyword	COVAR_POP COVAR_SAMP CORR REGR_SLOPE REGR_INTERCEPT 
-syn keyword sqlKeyword	REGR_COUNT REGR_R2 REGR_AVGX REGR_AVGY
-syn keyword sqlKeyword	REGR_SXX REGR_SYY REGR_SXY
+syn keyword sqlKeyword	covar_pop covar_samp corr regr_slope regr_intercept 
+syn keyword sqlKeyword	regr_count regr_r2 regr_avgx regr_avgy
+syn keyword sqlKeyword	regr_sxx regr_syy regr_sxy
 
 " Alternate keywords
 syn keyword sqlKeyword	character dec options proc reference
@@ -483,7 +483,7 @@ syn keyword sqlStatement create deallocate declare delete describe
 syn keyword sqlStatement disconnect drop execute exit explain fetch
 syn keyword sqlStatement for forward from get goto grant help if include
 syn keyword sqlStatement input insert install leave load lock loop
-syn keyword sqlStatement message open output parameter passthrough
+syn keyword sqlStatement message open output parameter parameters passthrough
 syn keyword sqlStatement prepare print put raiserror read readtext release
 syn keyword sqlStatement remote remove reorganize resignal restore resume
 syn keyword sqlStatement return revoke rollback savepoint select
@@ -499,143 +499,163 @@ syn keyword sqlType	money smallmoney
 syn keyword sqlType	bit 
 syn keyword sqlType	date datetime smalldate time timestamp 
 syn keyword sqlType	binary image varbinary uniqueidentifier
-syn keyword sqlType	xml
+syn keyword sqlType	xml unsigned
 
 syn keyword sqlOption Allow_nulls_by_default
-syn keyword sqlOption Replication_error_piece
-syn keyword sqlOption Replication_error
-syn keyword sqlOption Replicate_all
-syn keyword sqlOption Recovery_time
-syn keyword sqlOption Quoted_identifier
-syn keyword sqlOption Quote_all_identifiers
-syn keyword sqlOption Quiet
-syn keyword sqlOption Query_plan_on_open
-syn keyword sqlOption Qualify_owners
-syn keyword sqlOption Prevent_article_pkey_update
-syn keyword sqlOption Preserve_source_format
-syn keyword sqlOption Prefetch
-syn keyword sqlOption Precision
-syn keyword sqlOption Pinned_cursor_percent_of_cache
-syn keyword sqlOption Percent_as_comment
-syn keyword sqlOption Output_nulls
-syn keyword sqlOption Output_length
-syn keyword sqlOption Output_format
-syn keyword sqlOption Optimization_logging
-syn keyword sqlOption Optimization_level
-syn keyword sqlOption Optimization_goal
-syn keyword sqlOption On_tsql_error
-syn keyword sqlOption On_error
-syn keyword sqlOption On_Charset_conversion_failure
-syn keyword sqlOption NULLS
-syn keyword sqlOption Non_keywords
-syn keyword sqlOption Nearest_century
-syn keyword sqlOption Min_table_size_for_histogram
-syn keyword sqlOption Min_password_length
-syn keyword sqlOption Max_work_table_hash_size
-syn keyword sqlOption Max_statement_count
-syn keyword sqlOption Max_plans_cached
-syn keyword sqlOption Row_counts
-syn keyword sqlOption Verify_all_columns
-syn keyword sqlOption User_estimates
-syn keyword sqlOption Update_statistics
-syn keyword sqlOption Tsql_variables
-syn keyword sqlOption Tsql_hex_constant
-syn keyword sqlOption Truncation_length
-syn keyword sqlOption Truncate_with_auto_commit
-syn keyword sqlOption Truncate_timestamp_values
-syn keyword sqlOption Truncate_date_values
-syn keyword sqlOption Timestamp_format
-syn keyword sqlOption Time_format
-syn keyword sqlOption Thread_swaps
-syn keyword sqlOption Thread_stack
-syn keyword sqlOption Thread_count
-syn keyword sqlOption TDS_Empty_string_is_null
-syn keyword sqlOption Suppress_TDS_debugging
-syn keyword sqlOption Subscribe_by_remote
-syn keyword sqlOption String_rtruncation
-syn keyword sqlOption Statistics
-syn keyword sqlOption SR_TimeStamp_Format
-syn keyword sqlOption SR_Time_Format
-syn keyword sqlOption SR_Date_Format
-syn keyword sqlOption SQLStart
-syn keyword sqlOption SQLConnect
-syn keyword sqlOption SQL_flagger_warning_level
-syn keyword sqlOption SQL_flagger_error_level
-syn keyword sqlOption Sort_Collation
-syn keyword sqlOption Screen_format
-syn keyword sqlOption Scale
-syn keyword sqlOption Save_remote_passwords
-syn keyword sqlOption RI_Trigger_time
-syn keyword sqlOption Max_hash_size
-syn keyword sqlOption Max_cursor_count
-syn keyword sqlOption Login_procedure
-syn keyword sqlOption Database_authentication
-syn keyword sqlOption Cooperative_commits
-syn keyword sqlOption Cooperative_commit_timeout
-syn keyword sqlOption Conversion_error
-syn keyword sqlOption Continue_after_raiserror
-syn keyword sqlOption Compression
-syn keyword sqlOption Commit_on_exit
-syn keyword sqlOption Command_delimiter
-syn keyword sqlOption Close_on_endtrans
-syn keyword sqlOption Cis_rowset_size
-syn keyword sqlOption Cis_option
-syn keyword sqlOption Checkpoint_time
-syn keyword sqlOption Char_OEM_Translation
-syn keyword sqlOption Chained
-syn keyword sqlOption Blocking_timeout
-syn keyword sqlOption Blocking
-syn keyword sqlOption Blob_threshold
-syn keyword sqlOption Bell
-syn keyword sqlOption Background_priority
-syn keyword sqlOption Automatic_timestamp
-syn keyword sqlOption Auto_refetch
-syn keyword sqlOption Auto_commit
-syn keyword sqlOption Auditing
-syn keyword sqlOption Assume_distinct_servers
-syn keyword sqlOption Ansinull
-syn keyword sqlOption Ansi_update_constraints
-syn keyword sqlOption Ansi_permissions
-syn keyword sqlOption Ansi_integer_overflow
-syn keyword sqlOption Ansi_close_cursors_on_rollback
 syn keyword sqlOption Ansi_blanks
+syn keyword sqlOption Ansi_close_cursors_on_rollback
+syn keyword sqlOption Ansi_integer_overflow
+syn keyword sqlOption Ansi_permissions
+syn keyword sqlOption Ansi_update_constraints
+syn keyword sqlOption Ansinull
+syn keyword sqlOption Assume_distinct_servers
+syn keyword sqlOption Auditing
+syn keyword sqlOption Auditing_options
+syn keyword sqlOption Auto_commit
+syn keyword sqlOption Auto_refetch
+syn keyword sqlOption Automatic_timestamp
+syn keyword sqlOption Background_priority
+syn keyword sqlOption Bell
+syn keyword sqlOption Blob_threshold
+syn keyword sqlOption Blocking
+syn keyword sqlOption Blocking_timeout
+syn keyword sqlOption Chained
+syn keyword sqlOption Char_OEM_Translation
+syn keyword sqlOption Checkpoint_time
+syn keyword sqlOption Cis_option
+syn keyword sqlOption Cis_rowset_size
+syn keyword sqlOption Close_on_endtrans
+syn keyword sqlOption Command_delimiter
+syn keyword sqlOption Commit_on_exit
+syn keyword sqlOption Compression
+syn keyword sqlOption Connection_authentication
+syn keyword sqlOption Continue_after_raiserror
+syn keyword sqlOption Conversion_error
+syn keyword sqlOption Cooperative_commit_timeout
+syn keyword sqlOption Cooperative_commits
+syn keyword sqlOption Database_authentication
 syn keyword sqlOption Date_format
 syn keyword sqlOption Date_order
+syn keyword sqlOption Debug_messages
+syn keyword sqlOption Dedicated_task
 syn keyword sqlOption Default_timestamp_increment
 syn keyword sqlOption Delayed_commit_timeout
-syn keyword sqlOption Login_mode
-syn keyword sqlOption Log_max_requests
-syn keyword sqlOption Log_detailed_plans
-syn keyword sqlOption Lock_rejected_rows
-syn keyword sqlOption Java_page_buffer_size
-syn keyword sqlOption Java_namespace_size
-syn keyword sqlOption Java_input_output
-syn keyword sqlOption Java_heap_size
-syn keyword sqlOption ISQL_quote
-syn keyword sqlOption ISQL_plan_cursor_writability
-syn keyword sqlOption ISQL_plan_cursor_sensitivity
-syn keyword sqlOption ISQL_plan
-syn keyword sqlOption ISQL_log
-syn keyword sqlOption ISQL_field_separator
-syn keyword sqlOption ISQL_escape_character
-syn keyword sqlOption Verify_threshold
-syn keyword sqlOption ISQL_command_timing
-syn keyword sqlOption Input_format
-syn keyword sqlOption Headings
-syn keyword sqlOption Global_database_id
-syn keyword sqlOption Float_as_double
-syn keyword sqlOption First_day_of_week
-syn keyword sqlOption Fire_triggers
-syn keyword sqlOption External_remote_options
-syn keyword sqlOption Extended_join_syntax
-syn keyword sqlOption Exclude_operators
-syn keyword sqlOption Escape_character
-syn keyword sqlOption Echo
-syn keyword sqlOption Divide_by_zero_error
-syn keyword sqlOption Describe_Java_Format
-syn keyword sqlOption Delete_old_logs
 syn keyword sqlOption Delayed_commits
+syn keyword sqlOption Delete_old_logs
+syn keyword sqlOption Describe_Java_Format
+syn keyword sqlOption Divide_by_zero_error
+syn keyword sqlOption Echo
+syn keyword sqlOption Escape_character
+syn keyword sqlOption Exclude_operators
+syn keyword sqlOption Extended_join_syntax
+syn keyword sqlOption External_remote_options
+syn keyword sqlOption Fire_triggers
+syn keyword sqlOption First_day_of_week
+syn keyword sqlOption Float_as_double
+syn keyword sqlOption For_xml_null_treatment
+syn keyword sqlOption Force_view_creation
+syn keyword sqlOption Global_database_id
+syn keyword sqlOption Headings
+syn keyword sqlOption Input_format
+syn keyword sqlOption Integrated_server_name
 syn keyword sqlOption Isolation_level
+syn keyword sqlOption ISQL_command_timing
+syn keyword sqlOption ISQL_escape_character
+syn keyword sqlOption ISQL_field_separator
+syn keyword sqlOption ISQL_log
+syn keyword sqlOption ISQL_plan
+syn keyword sqlOption ISQL_plan_cursor_sensitivity
+syn keyword sqlOption ISQL_plan_cursor_writability
+syn keyword sqlOption ISQL_quote
+syn keyword sqlOption Java_heap_size
+syn keyword sqlOption Java_input_output
+syn keyword sqlOption Java_namespace_size
+syn keyword sqlOption Java_page_buffer_size
+syn keyword sqlOption Lock_rejected_rows
+syn keyword sqlOption Log_deadlocks
+syn keyword sqlOption Log_detailed_plans
+syn keyword sqlOption Log_max_requests
+syn keyword sqlOption Login_mode
+syn keyword sqlOption Login_procedure
+syn keyword sqlOption Max_cursor_count
+syn keyword sqlOption Max_hash_size
+syn keyword sqlOption Max_plans_cached
+syn keyword sqlOption Max_recursive_iterations
+syn keyword sqlOption Max_statement_count
+syn keyword sqlOption Max_work_table_hash_size
+syn keyword sqlOption Min_password_length
+syn keyword sqlOption Nearest_century
+syn keyword sqlOption Non_keywords
+syn keyword sqlOption NULLS
+syn keyword sqlOption ODBC_describe_binary_as_varbinary
+syn keyword sqlOption ODBC_distinguish_char_and_varchar
+syn keyword sqlOption On_Charset_conversion_failure
+syn keyword sqlOption On_error
+syn keyword sqlOption On_tsql_error
+syn keyword sqlOption Optimistic_wait_for_commit
+syn keyword sqlOption Optimization_goal
+syn keyword sqlOption Optimization_level
+syn keyword sqlOption Optimization_logging
+syn keyword sqlOption Optimization_workload
+syn keyword sqlOption Output_format
+syn keyword sqlOption Output_length
+syn keyword sqlOption Output_nulls
+syn keyword sqlOption Percent_as_comment
+syn keyword sqlOption Pinned_cursor_percent_of_cache
+syn keyword sqlOption Precision
+syn keyword sqlOption Prefetch
+syn keyword sqlOption Preserve_source_format
+syn keyword sqlOption Prevent_article_pkey_update
+syn keyword sqlOption Qualify_owners
+syn keyword sqlOption Query_plan_on_open
+syn keyword sqlOption Quiet
+syn keyword sqlOption Quote_all_identifiers
+syn keyword sqlOption Quoted_identifier
+syn keyword sqlOption Read_past_deleted
+syn keyword sqlOption Recovery_time
+syn keyword sqlOption Remote_idle_timeout
+syn keyword sqlOption Replicate_all
+syn keyword sqlOption Replication_error
+syn keyword sqlOption Replication_error_piece
+syn keyword sqlOption Return_date_time_as_string
+syn keyword sqlOption Return_java_as_string
+syn keyword sqlOption RI_Trigger_time
+syn keyword sqlOption Rollback_on_deadlock
+syn keyword sqlOption Row_counts
+syn keyword sqlOption Save_remote_passwords
+syn keyword sqlOption Scale
+syn keyword sqlOption Screen_format
+syn keyword sqlOption Sort_Collation
+syn keyword sqlOption SQL_flagger_error_level
+syn keyword sqlOption SQL_flagger_warning_level
+syn keyword sqlOption SQLConnect
+syn keyword sqlOption SQLStart
+syn keyword sqlOption SR_Date_Format
+syn keyword sqlOption SR_Time_Format
+syn keyword sqlOption SR_TimeStamp_Format
+syn keyword sqlOption Statistics
+syn keyword sqlOption String_rtruncation
+syn keyword sqlOption Subscribe_by_remote
+syn keyword sqlOption Subsume_row_locks
+syn keyword sqlOption Suppress_TDS_debugging
+syn keyword sqlOption TDS_Empty_string_is_null
+syn keyword sqlOption Temp_space_limit_check
+syn keyword sqlOption Thread_count
+syn keyword sqlOption Thread_stack
+syn keyword sqlOption Thread_swaps
+syn keyword sqlOption Time_format
+syn keyword sqlOption Time_zone_adjustment
+syn keyword sqlOption Timestamp_format
+syn keyword sqlOption Truncate_date_values
+syn keyword sqlOption Truncate_timestamp_values
+syn keyword sqlOption Truncate_with_auto_commit
+syn keyword sqlOption Truncation_length
+syn keyword sqlOption Tsql_hex_constant
+syn keyword sqlOption Tsql_variables
+syn keyword sqlOption Update_statistics
+syn keyword sqlOption User_estimates
+syn keyword sqlOption Verify_all_columns
+syn keyword sqlOption Verify_threshold
 syn keyword sqlOption Wait_for_commit
 
 " Strings and characters:
@@ -650,9 +670,9 @@ syn region sqlDashComment	start=/--/ end=/$/ contains=@Spell
 syn region sqlSlashComment	start=/\/\// end=/$/ contains=@Spell
 syn region sqlMultiComment	start="/\*" end="\*/" contains=sqlMultiComment,@Spell
 syn cluster sqlComment	contains=sqlDashComment,sqlSlashComment,sqlMultiComment,@Spell
-
-"syn sync ccomment sqlComment
-syn sync ccomment sqlComment,sqlDashComment,sqlSlashComment
+syn sync ccomment sqlComment
+syn sync ccomment sqlDashComment
+syn sync ccomment sqlSlashComment
 
 " Define the default highlighting.
 " For version 5.7 and earlier: only when not done already
